@@ -1,0 +1,100 @@
+body {
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+.owl-carousel {
+  direction: ltr;
+}
+
+.owl-carousel .owl-nav,
+.owl-carousel .owl-dots,
+.owl-carousel .owl-item {
+  direction: rtl;
+}
+
+.contact__input-box .bootstrap-select .dropdown-menu,
+.bootstrap-select .dropdown-toggle .filter-option {
+  text-align: right;
+}
+
+.list-unstyled {
+  padding-right: 0;
+}
+
+.sec-title__shape::before,
+.sec-title__shape::after {
+  clip-path: polygon(0 0, 73% 0, 100% 100%, 27% 100%);
+}
+
+.main-header__btn,
+.main-slider-one__btn,
+.blog-one__btn {
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+.main-header__btn__border {
+  transform: skew(-20deg);
+}
+
+.about-four__btn__border,
+.why-choose-one__btn__border {
+  transform: rotateY(180deg) skew(-20deg);
+  right: auto;
+}
+
+.main-slider-one__shape-line,
+.taxi-booking--one .taxi-booking__form::after,
+.taxi-booking--one .taxi-booking__form::before,
+.download-app-three::after,
+.download-app-three::before,
+.download-app-three__image__item img,
+.blog-one .blog-card__link,
+.cta-one__inner__image img,
+.cta-one__inner__box,
+.cta-one__inner__item-one,
+.cta-one__inner__item-two {
+  transform: rotateY(180deg);
+}
+
+.services-one__custome-navs button,
+.cityride-owl__carousel--basic-nav.owl-carousel .owl-nav button,
+.footer-widget__newsletter .form-group__form button[type=submit],
+.footer-widget__links li a i {
+  transform: rotateY(180deg);
+}
+
+.main-slider-one__video-btn {
+  clip-path: polygon(24% 0, 100% 0, 75% 100%, 0 100%);
+}
+
+.cityride-info__image {
+  clip-path: polygon(0 0, 100% 0, 69% 100%, 0 100%);
+}
+
+.why-choose-one__shape-left__one,
+.why-choose-one__shape-left__two,
+.blog-one__shape__one,
+.blog-one__shape__two {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.why-choose-one__shape-right__one,
+.why-choose-one__shape-right__two,
+.book-one__box-shape__one,
+.book-one__box-shape__two {
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+
+.taxi-booking__form__title {
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 9% 100%);
+}
+
+.book-one__image {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 23% 100%);
+}
+
+.book-one__image__bg {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 36% 100%);
+}
+/*# sourceMappingURL=cityride-custom-rtl.css.map */

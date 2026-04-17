@@ -1,0 +1,196 @@
+:root {
+  --cityride-base: #F93800;
+  --cityride-base-rgb: 249, 56, 0;
+  --cityride-black: #ffffff;
+  --cityride-black-rgb: 255, 255, 255;
+  --cityride-black2: #000000;
+  --cityride-black2-rgb: 0, 0, 0;
+  --cityride-black3: #141414;
+  --cityride-black3-rgb: 20, 20, 20;
+}
+
+body {
+  background-color: var(--cityride-black3);
+}
+
+.cityride-btn {
+  color: var(--cityride-black3);
+}
+.cityride-btn:hover {
+  color: var(--cityride-black3);
+}
+.cityride-btn::before, .cityride-btn::after {
+  background-color: var(--cityride-black);
+}
+.cityride-btn--border {
+  color: var(--cityride-black);
+}
+.cityride-btn--border:hover {
+  color: var(--cityride-black3);
+}
+.cityride-btn--border:hover .cityride-btn__icon {
+  color: var(--cityride-black3);
+}
+.cityride-btn--border::before, .cityride-btn--border::after {
+  background-color: var(--cityride-base);
+}
+
+.taxi-rates-two .taxi-card .cityride-btn {
+  color: var(--cityride-black3);
+  border-color: var(--cityride-black3);
+}
+.taxi-rates-two .taxi-card .cityride-btn .cityride-btn__icon {
+  color: var(--cityride-black3);
+}
+.taxi-rates-two .taxi-card .cityride-btn:hover {
+  color: var(--cityride-black3);
+}
+.taxi-rates-two .taxi-card .cityride-btn:hover .cityride-btn__icon {
+  color: var(--cityride-black3);
+}
+.taxi-rates-two .taxi-card .cityride-btn::before, .taxi-rates-two .taxi-card .cityride-btn::after {
+  background-color: var(--cityride-black);
+}
+
+.cityride-owl__carousel--basic-nav.owl-carousel .owl-nav button,
+.taxi-rates-two__custome-navs button {
+  color: var(--cityride-black3);
+}
+.cityride-owl__carousel--basic-nav.owl-carousel .owl-nav button:hover,
+.taxi-rates-two__custome-navs button:hover {
+  color: var(--cityride-black);
+  background-color: var(--cityride-black3);
+}
+
+.home-showcase__inner,
+.demo-one__card,
+.main-menu .main-menu__list li ul {
+  background-color: var(--cityride-black2);
+}
+
+.preloader,
+.topbar__info li:hover .topbar__info__icon,
+.main-header__right__inner__bg,
+.mobile-nav__content,
+.search-popup__form .cityride-btn::before,
+.search-popup__form .cityride-btn::after,
+.sticky-header--cloned.sticky-header--two,
+.main-slider-two__box,
+.service-card-two:hover .service-card-two__icon::after,
+.taxi-rates-two,
+.why-choose-four__btn-box .cityride-btn::after,
+.download-app-one,
+.driver-one,
+.driver-card__identity::before,
+.driver-card .social-links a,
+.faq-accordion .accordion-title__icon,
+.faq-one .faq-accordion .active .accordion-title__icon::after,
+.testimonials-two,
+.blog-two__shape-left__two,
+.blog-two__shape-right__two,
+.client-carousel,
+.main-footer__inner,
+.main-header {
+  background-color: var(--cityride-black3);
+}
+
+.services-two,
+.faq-one,
+.blog-two {
+  background-color: #080707;
+}
+.services-two__bg,
+.faq-one__bg,
+.blog-two__bg {
+  display: none;
+}
+
+.demo-one__btns,
+.blog-card__image__link,
+.footer-widget__post__thumb::after {
+  background-color: RGBA(var(--cityride-black3-rgb), 0.8);
+}
+
+.main-header__search::before {
+  background-color: RGBA(var(--cityride-gray-rgb), 0.8);
+}
+
+.topbar__info li,
+.topbar__info__icon,
+.topbar__login__icon,
+.topbar__login__inner,
+.main-header__btn:hover,
+.mobile-nav__content .main-menu__list li a button,
+.mobile-nav__content .main-menu__list li a button.expanded,
+.mobile-nav__contact__icon,
+.main-menu .main-menu__list li ul li:hover > a,
+.main-menu .main-menu__list li ul li > a::after,
+.search-popup__form input[type=search]:focus,
+.search-popup__form input[type=text]:focus,
+.service-card-two__title,
+.service-card-two__icon,
+.taxi-rates-two .taxi-card__title,
+.why-choose-four__list__item .icon i,
+.why-choose-four__list__item__text,
+.why-choose-four__title,
+.why-choose-four__content__list li,
+.download-app-one__btn__title,
+.driver-card__name,
+.driver-card__designation,
+.driver-card .social-links a:hover,
+.faq-accordion .accordion-title h4,
+.testimonial-card-two__quote span,
+.testimonial-card-two .cityride-ratings__icon,
+.blog-card__date__day,
+.blog-card__date__month,
+.blog-card__meta__icon,
+.blog-card__meta li a,
+.blog-card__title,
+.blog-card__link,
+.footer-widget__social a:hover,
+.main-footer__copyright,
+.main-footer__bottom__list li a,
+.taxi-booking__form label {
+  color: var(--cityride-black3);
+}
+
+.main-menu .main-menu__list > li.current > a,
+.main-menu .main-menu__list > li:hover > a,
+.cityride-info__item:hover .cityride-info__item__icon {
+  color: var(--cityride-base);
+}
+
+.topbar__info__icon {
+  border-color: RGBA(var(--cityride-black3-rgb), 0.2);
+}
+
+.topbar__info li:hover .topbar__info__icon,
+.topbar__language .bootstrap-select > .dropdown-toggle::after,
+.testimonials-one__shape::after,
+.book-one .book-one__btn {
+  border-color: var(--cityride-black3);
+}
+
+.taxi-rates-two .taxi-card__list {
+  border-top: 1px solid RGBA(var(--cityride-black3-rgb), 0.15);
+  border-bottom: 1px solid RGBA(var(--cityride-black3-rgb), 0.15);
+}
+
+.taxi-rates-two .taxi-card:hover {
+  transform: translateY(0);
+}
+.taxi-rates-two .taxi-card:hover .taxi-card__price {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--cityride-black);
+  background-color: var(--cityride-black3);
+}
+.taxi-rates-two .taxi-card:hover .taxi-card__company, .taxi-rates-two .taxi-card:hover .taxi-card__list li {
+  color: var(--cityride-black3);
+}
+
+.why-choose-four__btn-box .cityride-btn:hover,
+.blog-two .blog-card__link:hover {
+  color: var(--cityride-black);
+}
+/*# sourceMappingURL=cityride-dark.css.map */
