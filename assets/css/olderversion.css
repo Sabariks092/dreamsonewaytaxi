@@ -53,8 +53,8 @@
   --cityride-special-font: "Plus Jakarta Sans", serif;
   --cityride-text: #838383;
   --cityride-text-rgb: 131, 131, 131;
-  --cityride-base: #F93800;
-  --cityride-base-rgb: 249, 56, 0;
+  --cityride-base: #FED100;
+  --cityride-base-rgb: 254, 209, 0;
   --cityride-gray: #DFDFDF;
   --cityride-gray-rgb: 223, 223, 223;
   --cityride-gray2: #717880;
@@ -8239,15 +8239,12 @@ li:hover .sidebar__comments__icon {
   margin-right: 63px;
   border-radius: 8px;
   overflow: hidden;
-  max-width: 430px;
-  height: 566px;
 }
 @media (min-width: 1200px) {
-.about-four__image__item img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
+  .about-four__image__item img {
+    object-fit: cover;
+    width: 100%;
+  }
 }
 @media (max-width: 575px) {
   .about-four__image__item {
@@ -8258,30 +8255,11 @@ li:hover .sidebar__comments__icon {
   position: absolute;
   right: 0;
   bottom: 35px;
-  width: 236px;
-  height: 236px;
   overflow: hidden;
   border: 8px solid var(--cityride-white, #FFFFFF);
   filter: drop-shadow(0px 4px 30px rgba(0, 0, 0, 0.08));
   border-radius: 8px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
-}
-
-.about-four__image__small img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-@media (max-width: 575px) {
-  .about-four__image__item {
-    margin-right: 0px;
-    height: 350px;
-  }
-  .about-four__image__small {
-    width: 150px;
-    height: 150px;
-    bottom: -20px;
-  }
 }
 @media (max-width: 400px) {
   .about-four__image__small {
@@ -11810,10 +11788,8 @@ li:hover .sidebar__comments__icon {
 }
 .why-choose-four__item {
   background-color: var(--cityride-white, #FFFFFF);
-  padding: 0;
+  padding: 24px;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  border-radius: 12px;
 }
 @media (min-width: 992px) {
   .why-choose-four__image {
@@ -11822,32 +11798,15 @@ li:hover .sidebar__comments__icon {
 }
 .why-choose-four__image img {
   object-fit: cover;
-  height: 250px;
   width: 100%;
-}
-
-@media (min-width: 992px) {
-  .why-choose-four__image,
-  .why-choose-four__image img {
-    height: 100%;
-  }
 }
 .why-choose-four .gutter-x-50 {
   --bs-gutter-x:50px ;
 }
 @media (min-width: 992px) {
-.why-choose-four__content {
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-}
-@media (max-width: 767px) {
   .why-choose-four__content {
-    padding: 30px 20px;
+    margin-left: 12px;
   }
-}
 }
 .why-choose-four__content__list {
   list-style: none;
@@ -17211,191 +17170,3 @@ body.boxed-wrapper .download-app-three::after {
   clip-path: polygon(34% 0%, 100% 0, 100% 100%, 0% 100%);
 }
 /*# sourceMappingURL=cityride.css.map */
-
-/* Visit Places Section */
-.visit-places {
-  position: relative;
-  background-color: #f8f8f8;
-}
-
-.visit-places__item {
-  position: relative;
-  background-color: var(--cityride-white, #FFFFFF);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.05);
-  transition: all 500ms ease;
-  margin-bottom: 30px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.visit-places__item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-.visit-places__image {
-  position: relative;
-  height: 350px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.visit-places__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 500ms ease;
-}
-
-.visit-places__item:hover .visit-places__image img {
-  transform: scale(1.1);
-}
-
-.visit-places__content {
-  padding: 25px 20px;
-  text-align: center;
-  border-top: 3px solid var(--cityride-base, #F93800);
-  background: #fff;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.visit-places__title {
-  font-family: var(--cityride-heading-font, "Lexend", serif);
- font-size: 18px;
- font-weight: 700;
- color: var(--cityride-black, #141414);
- margin: 0;
- line-height: 1.4;
- transition: color 500ms ease;
-}
-
-.visit-places__item:hover .visit-places__title {
- color: var(--cityride-base, #F93800);
-}
-
-/* Hero Section */
-.clean-hero {
-  position: relative;
-  overflow: hidden;
-  background: #000;
-}
-
-.clean-hero__item {
-  position: relative;
-  height: 100vh;
-  min-height: 600px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.clean-hero__item::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%);
-  z-index: 1;
-}
-
-.clean-hero__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-}
-
-.clean-hero .owl-dots {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.clean-hero .owl-dot span {
-  width: 12px;
-  height: 12px;
-  background: rgba(255,255,255,0.4);
-  transition: all 0.3s ease;
-}
-
-.clean-hero .owl-dot.active span {
-  background: #F93800;
-  width: 30px;
-}
-
-.simple-hero__location {
-  position: absolute;
-  top: 100px; /* Adjusted to be below header */
-  right: 40px;
-  z-index: 10;
-  background: rgba(0,0,0,0.4);
-  padding: 8px 15px;
-  border-right: 3px solid #F93800;
-  backdrop-filter: blur(4px);
-}
-
-/* Responsive Hero */
-@media (max-width: 991px) {
-  .clean-hero__item {
-    height: 80vh;
-  }
-}
-@media (max-width: 767px) {
-  .clean-hero__item {
-    height: 60vh;
-    min-height: 400px;
-  }
-  .simple-hero__location {
-    top: 70px;
-    right: 15px;
-    padding: 5px 10px;
-  }
-  /* Hide contact strip on small mobiles to avoid clutter */
-  .clean-hero > div[style*="absolute"] {
-    display: none !important;
-  }
-}
-
-/* WhatsApp Floating Button */
-.whatsapp-float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 120px; /* Above scroll-to-top */
-  right: 50px;
-  background-color: #25d366;
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
-  z-index: 10001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  background-color: #128c7e;
-  color: #fff;
-  transform: scale(1.1) rotate(5deg);
-}
-
-@media (max-width: 767px) {
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    bottom: 90px;
-    right: 20px;
-    font-size: 25px;
-  }
-}
