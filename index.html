@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,9 +45,9 @@
     <div class="custom-cursor__cursor"></div>
     <div class="custom-cursor__cursor-two"></div>
 
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader__image" style="background-image: url(assets/images/loader.png);"></div>
-    </div>
+    </div> -->
     <!-- /.preloader -->
     <div class="page-wrapper">
         <header class="main-header main-header--two sticky-header sticky-header--two sticky-header--normal">
@@ -91,80 +91,19 @@
         <section class="clean-hero" id="home">
 
             <!-- Vertical contact strip on the left center -->
-
-            <div style="
-position:absolute;
-left:0;
-top:50%;
-transform:translateY(-50%);
-z-index:20;
-display:flex;
-flex-direction:column;
-background:rgba(0,0,0,0.55);
-backdrop-filter:blur(6px);
-border-right:3px solid #F93800;
-border-radius:0 10px 10px 0;
-padding:18px 10px;
-gap:16px;
-">
-
-
-
-
-                <a href="mailto:dreamsholidaytrips@gmail.com" style="
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:8px;
-color:#fff;
-text-decoration:none;
-font-size:12px;
-font-weight:600;
-letter-spacing:.4px;
-">
-                    <span style="
-writing-mode:vertical-rl;
-transform:rotate(180deg);
-text-transform:lowercase;
-">dreamsholidaytrips@gmail.com</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623"
-                        style="transform: rotate(-90deg);">
-                        <path
-                            d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            <div class="hero-contact-strip">
+                <a href="mailto:dreamsholidaytrips@gmail.com" style="display:flex; flex-direction:column; align-items:center; gap:8px; color:#fff; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.4px;">
+                    <span style="writing-mode:vertical-rl; transform:rotate(180deg); text-transform:lowercase;">dreamsholidaytrips@gmail.com</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" style="transform: rotate(-90deg);">
+                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
-
-
-
                 </a>
-                <a href="tel:+917200221121" style="
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:8px;
-color:#fff;
-text-decoration:none;
-font-size:13px;
-font-weight:600;
-letter-spacing:.4px;
-padding-bottom:14px;
-border-bottom:1px solid rgba(255,255,255,.2);
-">
-                    <span style="
-writing-mode:vertical-rl;
-transform:rotate(180deg);
-">+91 72002 21121</span>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623"
-                        style="transform: rotate(-90deg);">
-
-                        <path
-                            d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+                <a href="tel:+917200221121" style="display:flex; flex-direction:column; align-items:center; gap:8px; color:#fff; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:.4px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.2);">
+                    <span style="writing-mode:vertical-rl; transform:rotate(180deg);">+91 72002 21121</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" style="transform: rotate(-90deg);">
+                        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
                     </svg>
-
-
-
                 </a>
-
             </div>
 
             <div class="clean-hero__slider cityride-owl__carousel owl-carousel owl-theme" data-owl-options='{
@@ -186,25 +125,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 AUROVILLE</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -217,25 +144,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 ROCK BEACH</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -248,25 +163,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 CHUNNAMBHAR BOATHOUSE</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -279,25 +182,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 THE FRENCH QUARTERS</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -310,25 +201,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 THE Puducherry MUSEUM</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -341,25 +220,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 PARADISE BEACH</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -372,25 +239,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 SRI AUROBINDO ASHRAM</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -401,73 +256,15 @@ transform:rotate(180deg);
                         <div class="simple-hero__location">
                             <div
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
-                                AROVIL</div>
+                                Sri Manakula Vinayagar Temple</div>
                         </div>
-                        <div class="clean-hero__content text-white" style="
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
-                    padding: 0 80px;
-                ">
-                            <p style="
-                        font-size: 13px;
-                        font-weight: 700;
-                        letter-spacing: 4px;
-                        text-transform: uppercase;
-                        color: #f5a623;
-                        margin-bottom: 14px;
-                        opacity: 0.95;
-                    ">Puducherry & Beyond</p>
-                            <h2 style="
-                        font-size: clamp(2rem, 5vw, 3.8rem);
-                        font-weight: 900;
-                        color: #ffffff;
-                        line-height: 1.1;
-                        margin: 0 0 18px 0;
-                        text-shadow: 0 4px 24px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.4);
-                        letter-spacing: -0.5px;
-                    ">Welcome to Dreams<br>One Way Taxi</h2>
-                            <p style="
-                        font-size: clamp(0.95rem, 2vw, 1.15rem);
-                        color: rgba(255,255,255,0.88);
-                        max-width: 560px;
-                        line-height: 1.7;
-                        margin: 0 0 32px 0;
-                        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-                        font-weight: 400;
-                    ">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
-                            <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
-                                <a href="#services" style="
-                            display: inline-block;
-                            padding: 13px 20px;
-                            background: #F93800;
-                            color: #ffff;
-                            font-weight: 800;
-                            font-size: 14px;
-                            letter-spacing: 1px;
-                            text-transform: uppercase;
-                            text-decoration: none;
-                            border-radius: 2px;
-                            box-shadow: 0 4px 20px rgba(245,166,35,0.45);
-                            transition: all 0.2s;
-                        ">Our Services</a>
-                                <a href="tel:+917200221121" style="
-                            display: inline-block;
-                            padding: 13px 32px;
-                            background: transparent;
-                            color: #ffffff;
-                            font-weight: 700;
-                            font-size: 14px;
-                            letter-spacing: 1px;
-                            text-transform: uppercase;
-                            text-decoration: none;
-                            border: 2px solid rgba(255,255,255,0.7);
-                            border-radius: 4px;
-                            backdrop-filter: blur(4px);
-                            transition: all 0.2s;
-                        "> Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -483,25 +280,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 MEERAN MOSQUE</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams<br>One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -514,25 +299,13 @@ transform:rotate(180deg);
                                 style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;">
                                 BASILICA OF THE SACRED HEART OF JESUS</div>
                         </div>
-                        <div class="clean-hero__content text-white"
-                            style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;">
-                            <p
-                                style="font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#f5a623;margin-bottom:14px;">
-                                Puducherry & Beyond</p>
-                            <h2
-                                style="font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 18px 0;text-shadow:0 4px 24px rgba(0,0,0,0.6);letter-spacing:-0.5px;">
-                                Welcome to Dreams<br>One Way Taxi</h2>
-                            <p
-                                style="font-size:clamp(0.95rem,2vw,1.15rem);color:rgba(255,255,255,0.88);max-width:560px;line-height:1.7;margin:0 0 32px 0;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
-                                Beyond.</p>
-                            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-                                <a href="#services"
-                                    style="display:inline-block;padding:13px 32px;background:#F93800;color:#fff;font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
-                                    Services</a>
-                                <a href="tel:+917200221121"
-                                    style="display:inline-block;padding:13px 32px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.7);border-radius:4px;">
-                                    Book a Trip</a>
+                        <div class="clean-hero__content text-white">
+                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
+                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams<br>One Way Taxi</h2>
+                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <div class="clean-hero__btn-box">
+                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
+                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -819,7 +592,7 @@ transform:rotate(180deg);
                             <div class="taxi-card__inner">
                                 <div class="taxi-card__image">
                                     <img src="assets/images/cars/sedan.png" alt="SEDAN">
-                                    <h3 class="taxi-card__price">13 - 14 â‚¹ / Km</h3><!-- /.taxi-card__price -->
+                                    <h3 class="taxi-card__price">13 - 14 ₹ / Km</h3><!-- /.taxi-card__price -->
                                 </div><!-- /.taxi-card__image -->
                                 <div class="taxi-card__content">
                                     <h3 class="taxi-card__title">SEDAN</h3><!-- /.taxi-card__title -->
@@ -828,15 +601,15 @@ transform:rotate(180deg);
                                     <ul class="taxi-card__list list-unstyled">
                                         <li>
                                             <span>One Way</span>
-                                            <span>14 â‚¹ / Km</span>
+                                            <span>14 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Round Trip</span>
-                                            <span>13 â‚¹ / Km</span>
+                                            <span>13 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>400 â‚¹</span>
+                                            <span>400 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
@@ -861,7 +634,7 @@ transform:rotate(180deg);
                             <div class="taxi-card__inner">
                                 <div class="taxi-card__image">
                                     <img src="assets/images/cars/suv.png" alt="SUV">
-                                    <h3 class="taxi-card__price">18 - 19 â‚¹ / Km</h3><!-- /.taxi-card__price -->
+                                    <h3 class="taxi-card__price">18 - 19 ₹ / Km</h3><!-- /.taxi-card__price -->
                                 </div><!-- /.taxi-card__image -->
                                 <div class="taxi-card__content">
                                     <h3 class="taxi-card__title">SUV</h3><!-- /.taxi-card__title -->
@@ -869,15 +642,15 @@ transform:rotate(180deg);
                                     <ul class="taxi-card__list list-unstyled">
                                         <li>
                                             <span>One Way</span>
-                                            <span>19 â‚¹ / Km</span>
+                                            <span>19 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Round Trip</span>
-                                            <span>18 â‚¹ / Km</span>
+                                            <span>18 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>400 â‚¹</span>
+                                            <span>400 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
@@ -902,7 +675,7 @@ transform:rotate(180deg);
                             <div class="taxi-card__inner">
                                 <div class="taxi-card__image">
                                     <img src="assets/images/cars/innova.png" alt="CRYSTA">
-                                    <h3 class="taxi-card__price">19 - 24 â‚¹ / Km</h3><!-- /.taxi-card__price -->
+                                    <h3 class="taxi-card__price">19 - 24 ₹ / Km</h3><!-- /.taxi-card__price -->
                                 </div><!-- /.taxi-card__image -->
                                 <div class="taxi-card__content">
                                     <h3 class="taxi-card__title">CRYSTA</h3><!-- /.taxi-card__title -->
@@ -911,15 +684,15 @@ transform:rotate(180deg);
                                     <ul class="taxi-card__list list-unstyled">
                                         <li>
                                             <span>One Way</span>
-                                            <span>24 â‚¹ / Km</span>
+                                            <span>24 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Round Trip</span>
-                                            <span>19 â‚¹ / Km</span>
+                                            <span>19 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>600 - 700 â‚¹</span>
+                                            <span>600 - 700 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
@@ -944,7 +717,7 @@ transform:rotate(180deg);
                             <div class="taxi-card__inner">
                                 <div class="taxi-card__image">
                                     <img src="assets/images/cars/tempo-14.png" alt="TEMPO 14 SEAT">
-                                    <h3 class="taxi-card__price">25 â‚¹ / Km</h3><!-- /.taxi-card__price -->
+                                    <h3 class="taxi-card__price">25 ₹ / Km</h3><!-- /.taxi-card__price -->
                                 </div><!-- /.taxi-card__image -->
                                 <div class="taxi-card__content">
                                     <h3 class="taxi-card__title">TEMPO 14 SEAT</h3><!-- /.taxi-card__title -->
@@ -953,11 +726,11 @@ transform:rotate(180deg);
                                     <ul class="taxi-card__list list-unstyled">
                                         <li>
                                             <span>Rate per Km</span>
-                                            <span>25 â‚¹ / Km</span>
+                                            <span>25 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>600 â‚¹</span>
+                                            <span>600 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
@@ -986,7 +759,7 @@ transform:rotate(180deg);
                             <div class="taxi-card__inner">
                                 <div class="taxi-card__image">
                                     <img src="assets/images/cars/tempo-17.png" alt="TEMPO 17 SEAT">
-                                    <h3 class="taxi-card__price">28 â‚¹ / Km</h3><!-- /.taxi-card__price -->
+                                    <h3 class="taxi-card__price">28 ₹ / Km</h3><!-- /.taxi-card__price -->
                                 </div><!-- /.taxi-card__image -->
                                 <div class="taxi-card__content">
                                     <h3 class="taxi-card__title">TEMPO 17 SEAT</h3><!-- /.taxi-card__title -->
@@ -995,11 +768,11 @@ transform:rotate(180deg);
                                     <ul class="taxi-card__list list-unstyled">
                                         <li>
                                             <span>Rate per Km</span>
-                                            <span>28 â‚¹ / Km</span>
+                                            <span>28 ₹ / Km</span>
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>600 â‚¹</span>
+                                            <span>600 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
@@ -1927,7 +1700,7 @@ transform:rotate(180deg);
                                     <h6 class="sec-title__tagline">why choose us</h6><!-- /.sec-title__tagline -->
                                 </div><!-- /.sec-title__top -->
                                 <h3 class="sec-title__title wow fadeInUp" data-wow-duration="1500ms"
-                                    data-wow-delay="200ms">Weâ€™re The Best Taxi Service In Your Town</h3>
+                                    data-wow-delay="200ms">We're The Best Taxi Service In Your Town</h3>
                                 <!-- /.sec-title__title -->
                             </div><!-- /.sec-title -->
                         </div><!-- /.why-choose-three__content -->
@@ -2048,7 +1821,7 @@ transform:rotate(180deg);
                                 <div class="footer-widget footer-widget--map">
                                     <h2 class="footer-widget__title">Find Us</h2><!-- /.footer-widget__title -->
                                     <div class="google-map-footer"
-                                        style="width: 100%; height: 180px; border-radius: 10px; overflow: hidden;">
+                                        style="width: 100%; height: 180px; border-radius: 0px; overflow: hidden;">
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.7972573492248!2d79.75875789999999!3d11.919193299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5361963ff776c5%3A0xa12ca98a02ab1f59!2sDreams%20Holiday!5e0!3m2!1sen!2sin!4v1776738508940!5m2!1sen!2sin"
                                             width="100%" height="100%" style="border:0;" allowfullscreen=""
@@ -2065,11 +1838,9 @@ transform:rotate(180deg);
                 <div class="main-footer__bottom">
                     <div class="container">
                         <div class="main-footer__bottom__inner">
-                            <p class="main-footer__copyright">Â© All Copyright 2024 by Dreams One Way Taxi</p>
-                            <ul class="list-unstyled main-footer__bottom__list">
-                                <li><a href="faq.html" class="">Terms & Condition</a></li>
-                                <li><a href="faq.html" class="">Privacy Policy</a></li>
-                            </ul><!-- /.list-unstyled -->
+                            <p class="main-footer__copyright">© All Copyright 2024 by Dreams One Way Taxi</p>
+                            <p class="main-footer__copyright"> Digital Presence By <a style="color: #fff;" href="https://ayntech.co/" target="_blank" rel="noopener noreferrer"><span>Ayn tech</span></a> In collaboration with <a style="color: #fff;" href="https://samhub.in/" rel="noopener noreferrer" target="_blank"><span>SamHub</span></a></p>
+                            <!-- /.list-unstyled -->
                         </div><!-- /.main-footer__inner -->
                     </div><!-- /.container -->
                 </div><!-- /.main-footer__bottom -->
@@ -2083,7 +1854,7 @@ transform:rotate(180deg);
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="icon-x"></i></span>
             <div class="logo-box logo-retina">
-                <a href="#home" aria-label="logo image"><img src="assets/images/logo-light.png" width="175"
+                <a href="#home" aria-label="logo image"><img src="assets/images/logo/dreamsonewaytaxi.jpeg" width="105" style="border-radius: 100%;"
                         alt="logo"></a>
             </div><!-- /.logo-box -->
             <div class="mobile-nav__container"></div><!-- /.mobile-nav__container -->

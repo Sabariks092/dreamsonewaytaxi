@@ -5017,6 +5017,7 @@ li:hover .sidebar__comments__icon {
 }
 .main-footer__bottom {
   text-align: center;
+  color: #fff;
   background-color: var(--cityride-base, #FED100);
 }
 .main-footer__bottom__inner {
@@ -5058,7 +5059,7 @@ li:hover .sidebar__comments__icon {
   font-size: 16px;
   line-height: 138%;
   text-transform: capitalize;
-  color: RGBA(var(--cityride-black-rgb, 20, 20, 20), 0.8);
+  color: #d4d2d2;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -15763,9 +15764,23 @@ li:hover .sidebar__comments__icon {
     width: calc(50% - 30px);
   }
 }
+.faq-one__carousel__item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 480px;
+  border-radius: 8px;
+}
+@media (max-width: 767px) {
+  .faq-one__carousel__item {
+    height: 320px;
+  }
+}
 .faq-one__carousel__item img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .faq-one .sec-title {
   position: relative;
@@ -17348,7 +17363,7 @@ body.boxed-wrapper .download-app-three::after {
 .visit-places__item {
   position: relative;
   background-color: var(--cityride-white, #FFFFFF);
-  border-radius: 12px;
+  border-radius: 0px;
   overflow: hidden;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.05);
   transition: all 500ms ease;
@@ -17436,6 +17451,12 @@ body.boxed-wrapper .download-app-three::after {
   position: relative;
   z-index: 2;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 80px;
 }
 
 .clean-hero .owl-dots {
@@ -17470,25 +17491,101 @@ body.boxed-wrapper .download-app-three::after {
 }
 
 /* Responsive Hero */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .clean-hero__item {
-    height: 80vh;
+    height: 700px;
+  }
+  .clean-hero__content {
+    padding: 0 60px;
   }
 }
+
+@media (max-width: 991px) {
+  .clean-hero__item {
+    height: 650px;
+  }
+  .clean-hero__content {
+    padding: 0 40px;
+  }
+  .simple-hero__location {
+    top: 80px;
+    right: 20px;
+  }
+}
+
 @media (max-width: 767px) {
   .clean-hero__item {
-    height: 60vh;
-    min-height: 400px;
+    height: 600px;
+    min-height: 500px;
+  }
+  .clean-hero__content {
+    padding: 0 20px;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .clean-hero__content h2 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+  .clean-hero__content p {
+    font-size: 14px !important;
+    margin-bottom: 25px !important;
+    max-width: 100% !important;
   }
   .simple-hero__location {
     top: 70px;
     right: 15px;
     padding: 5px 10px;
   }
-  /* Hide contact strip on small mobiles to avoid clutter */
-  .clean-hero > div[style*="absolute"] {
+  .simple-hero__location div {
+    font-size: 11px !important;
+    letter-spacing: 2px !important;
+  }
+  
+  .clean-hero__btn-box {
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px;
+    margin: 0; /* Left align on mobile */
+    gap: 10px !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .clean-hero__btn-box a {
+    width: 100%;
+    text-align: center;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+  }
+}
+
+.hero-contact-strip {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  border-right: 3px solid #F93800;
+  border-radius: 0 10px 10px 0;
+  padding: 18px 10px;
+  gap: 16px;
+}
+
+@media (max-width: 767px) {
+  .hero-contact-strip {
     display: none !important;
   }
+}
+
+.clean-hero__btn-box {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* WhatsApp Floating Button */
