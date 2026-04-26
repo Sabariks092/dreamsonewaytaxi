@@ -22,16 +22,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalIcon = document.getElementById("modal-icon");
     const modalTitle = document.getElementById("modal-title");
     const modalMessage = document.getElementById("modal-message");
+    const modalDetails = document.getElementById("modal-details");
     const modalCloseBtn = document.getElementById("modal-close");
 
     // --- Utility Functions ---
 
-    function showModal(state, title, message) {
-        modal.style.display = 'flex';  // ADD THIS LINE
-    modalIcon.className = "custom-modal__icon";
+    function showModal(state, title, message, details = "") {
+        modal.style.display = 'flex';
+        modalIcon.className = "custom-modal__icon";
         modalCloseBtn.style.display = "none";
-        if (state === 'loading') modalIcon.classList.add("custom-modal__icon--loading");
-        else if (state === 'success') {
+        modalDetails.style.display = details ? "block" : "none";
+        modalDetails.innerHTML = details;
+
+        if (state === 'loading') {
+            modalIcon.classList.add("custom-modal__icon--loading");
+            modalIcon.innerHTML = '';
+        } else if (state === 'success') {
             modalIcon.classList.add("custom-modal__icon--success");
             modalIcon.innerHTML = '✓';
             modalCloseBtn.style.display = "inline-flex";
@@ -154,24 +160,51 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Create a scrollable list wrapper for suggestions
+        const listWrapper = document.createElement("div");
+        listWrapper.className = "autocomplete-list-wrapper";
+
         features.forEach(feature => {
             const props = feature.properties;
             const name = props.name || "";
-            const street = props.street ? `, ${props.street}` : "";
-            const city = props.city ? `, ${props.city}` : "";
-            const fullLabel = `${name}${street}${city}`;
+            
+            // Build secondary text
+            const secondaryParts = [];
+            if (props.street) secondaryParts.push(props.street);
+            if (props.city) secondaryParts.push(props.city);
+            if (props.state) secondaryParts.push(props.state);
+            const secondaryText = secondaryParts.join(", ");
+            
+            const fullLabel = name + (secondaryText ? `, ${secondaryText}` : "");
 
-            const li = document.createElement("div");
-            li.className = "autocomplete-item";
-            li.innerHTML = `<strong>${name}</strong>${street}${city}`;
-            li.addEventListener("click", () => {
+            const item = document.createElement("div");
+            item.className = "autocomplete-item";
+            item.innerHTML = `
+                <div class="item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="item-details">
+                    <span class="main-text">${name}</span>
+                    <span class="secondary-text">${secondaryText}</span>
+                </div>
+            `;
+            item.addEventListener("click", () => {
                 inputElement.value = fullLabel;
                 container.classList.remove("active");
                 validateField(inputElement);
                 checkFormValidity(inputElement.closest("form"));
             });
-            container.appendChild(li);
+            listWrapper.appendChild(item);
         });
+
+        container.appendChild(listWrapper);
+
+        // Add "powered by Google" footer outside the scrollable wrapper
+        const footer = document.createElement("div");
+        footer.className = "autocomplete-footer";
+        footer.innerHTML = `
+            <span style="font-size: 11px; color: #70757a;">powered by </span>
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" class="google-powered" style="height: 14px; margin-left: 4px; vertical-align: middle;">
+        `;
+        container.appendChild(footer);
 
         container.classList.add("active");
     }
@@ -219,6 +252,32 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = new FormData(form);
             const params = new URLSearchParams(data);
 
+            // Generate Details HTML for the popup
+            const labels = {
+                fullName: 'Name',
+                email: 'Email',
+                mobile: 'Mobile',
+                pickup: 'Pick up',
+                dropoff: 'Drop off',
+                passengers: 'Passengers',
+                taxiType: 'Taxi Type',
+                date: 'Date',
+                time: 'Time'
+            };
+            let detailsHTML = "";
+            data.forEach((value, key) => {
+                if (labels[key]) {
+                    detailsHTML += `<p><strong>${labels[key]}:</strong> <span>${value}</span></p>`;
+                }
+            });
+
+            // Add Additional Charges Legend
+            detailsHTML += `
+                <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 11px; color: #990f02; font-weight: 600; line-height: 1.4; text-align: center;">
+                    *Toll, parking, and permit will be extra charges in the bill.
+                </div>
+            `;
+
             fetch(SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
@@ -226,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
             })
             .then(() => {
-                showModal('success', 'Booking Confirmed!', '✅ Your ride has been booked successfully. We will contact you shortly.');
+                showModal('success', 'Thanks for choosing us', 'Our team will reach you within 24 hrs', detailsHTML);
                 form.reset();
                 if (window.$ && typeof $.fn.selectpicker === 'function') $('.selectpicker').selectpicker('refresh');
                 checkFormValidity(form);
