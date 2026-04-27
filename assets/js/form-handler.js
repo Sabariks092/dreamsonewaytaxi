@@ -180,7 +180,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const today = new Date();
             today.setHours(0,0,0,0);
             return inputDate >= today ? "" : "Select future date";
-        }
+        },
+        tripType: (val) => val ? "" : "Select Trip Type"
     };
 
     function validateField(input) {
@@ -190,31 +191,33 @@ document.addEventListener("DOMContentLoaded", function () {
         const msgSpan = input.closest(".taxi-booking__form__control")?.querySelector(".validation-msg");
         let error = validators[name](value);
 
+        // Special handling for bootstrap-select
+        const control = input.closest(".taxi-booking__form__control");
+        const selectPickerBtn = control?.querySelector(".bootstrap-select .btn");
+
         if (error) {
             input.classList.add("invalid");
+            if (selectPickerBtn) selectPickerBtn.style.setProperty('border-color', '#ff0000', 'important');
             if (msgSpan) msgSpan.textContent = error;
             return false;
         } else {
             input.classList.remove("invalid");
+            if (selectPickerBtn) selectPickerBtn.style.borderColor = "";
             if (msgSpan) msgSpan.textContent = "";
             return true;
         }
     }
 
     function checkFormValidity(form) {
-        const requiredNames = ["fullName", "email", "mobile", "pickup", "dropoff", "passengers", "date"];
+        const requiredNames = ["fullName", "email", "mobile", "pickup", "dropoff", "passengers", "date", "tripType"];
         let allValid = true;
 
         requiredNames.forEach(name => {
             const input = form.querySelector(`[name="${name}"]`);
-            if (!input || validators[name](input.value.trim()) !== "") allValid = false;
+            if (!input || (validators[name] && validators[name](input.value.trim()) !== "")) allValid = false;
         });
-
-        const tripType = form.querySelector('select[name="tripType"]')?.value;
-        if (!tripType) allValid = false;
         
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.disabled = !allValid;
+        // Removed automatic button disabling to allow "on-click" validation feedback
         
         return allValid;
     }
@@ -232,6 +235,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(async () => {
+            // Show loader in suggestion box
+            if (container) {
+                container.innerHTML = `<div class="suggestion-loader"><div class="spinner"></div><span>Searching locations...</span></div>`;
+                container.classList.add("active");
+            }
+
             try {
                 const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&lat=${config.puducherryCoords.lat}&lon=${config.puducherryCoords.lon}&limit=8&countrycode=in`;
                 console.log(`Autocomplete: Fetching from ${url}`);
@@ -242,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 displayResults(data.features || [], resultContainerId, inputElement);
             } catch (err) {
                 console.warn("Autocomplete Fetch Error:", err);
+                if (container) container.classList.remove("active");
             }
         }, config.debounceTime);
     }
@@ -317,8 +327,27 @@ document.addEventListener("DOMContentLoaded", function () {
         taxiList.innerHTML = "";
 
         TAXI_DATA_DYNAMIC.forEach(taxi => {
-            const rate = isRoundTrip ? taxi.roundTrip : taxi.oneWay;
-            const baseFare = Math.round(totalDistance * rate);
+            const nameLower = taxi.name.toLowerCase();
+            let rate = isRoundTrip ? taxi.roundTrip : taxi.oneWay;
+            let effectiveDistance = totalDistance;
+            
+            // Requirement 1: Tempo 14/17 seater one-way price same as two-way trip price
+            if (nameLower.includes("tempo 14 seat") || nameLower.includes("tempo 17 seat")) {
+                rate = taxi.roundTrip;
+                if (!isRoundTrip) {
+                    effectiveDistance = distance * 2; // Charge for return journey even on one-way
+                }
+            }
+
+            const baseFare = Math.round(effectiveDistance * rate);
+
+            // Requirement 2: Driver Beta logic
+            let driverBeta = 400; // Default for Sedan/SUV
+            if (nameLower.includes("crysta")) {
+                driverBeta = isRoundTrip ? 600 : 700;
+            } else if (nameLower.includes("tempo 14 seat") || nameLower.includes("tempo 17 seat")) {
+                driverBeta = 600;
+            }
 
             const item = document.createElement("div");
             item.className = "taxi-item";
@@ -334,26 +363,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     <span class="amount">₹${baseFare.toLocaleString()}</span>
                 </div>
             `;
-            item.addEventListener("click", () => selectTaxi(taxi, totalDistance, baseFare));
+            // Pass the effectiveDistance and calculated driverBeta to selectTaxi
+            item.addEventListener("click", () => selectTaxi(taxi, effectiveDistance, baseFare, driverBeta));
             taxiList.appendChild(item);
         });
 
         taxiModal.classList.add("taxi-selection-modal--active");
     }
 
-    function selectTaxi(taxi, distance, baseFare) {
+    function selectTaxi(taxi, distance, baseFare, driverBeta) {
         console.log("Taxi Selected:", taxi.name);
         taxiModal.classList.remove("taxi-selection-modal--active");
         
-        const totalAmount = baseFare + taxi.driverBeta;
+        const totalAmount = baseFare + driverBeta;
         activeForm.querySelector('[name="taxiType"]').value = taxi.name;
         activeForm.querySelector('[name="distance"]').value = distance + " Km";
         activeForm.querySelector('[name="estimatedAmount"]').value = "₹ " + totalAmount;
 
-        confirmAndSubmit(activeForm, taxi, distance, baseFare, totalAmount);
+        confirmAndSubmit(activeForm, taxi, distance, baseFare, totalAmount, driverBeta);
     }
 
-    function confirmAndSubmit(form, taxi, distance, baseFare, totalAmount) {
+    function confirmAndSubmit(form, taxi, distance, baseFare, totalAmount, driverBeta) {
         const formData = new FormData(form);
         const labels = { fullName: 'Name', mobile: 'Mobile', pickup: 'From', dropoff: 'To', date: 'Date', tripType: 'Trip', passengers: 'Passengers' };
 
@@ -363,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="summary-details">
                 <p><strong>Total Distance:</strong> <span>${distance} Km</span></p>
                 <p><strong>Base Fare:</strong> <span>₹${baseFare}</span></p>
-                <p><strong>Driver Beta:</strong> <span>₹${taxi.driverBeta}</span></p>
+                <p><strong>Driver Beta:</strong> <span>₹${driverBeta}</span></p>
                 <p><strong>Estimated Total:</strong> <span style="color: #F93800; font-weight: 800; font-size: 1.2rem;">₹${totalAmount}</span></p>
                 <hr style="margin: 10px 0;">
         `;
@@ -432,6 +462,15 @@ document.addEventListener("DOMContentLoaded", function () {
         form.querySelectorAll("input, select").forEach(input => {
             const ev = input.tagName === "SELECT" || input.classList.contains("cityride-datepicker") ? "change" : "input";
             input.addEventListener(ev, () => {
+                if (input.name === "mobile") {
+                    input.value = input.value.replace(/[^0-9]/g, '').slice(0, 10);
+                }
+                if (input.name === "passengers") {
+                    input.value = input.value.replace(/[^0-9]/g, '');
+                }
+                if (input.name === "fullName") {
+                    input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+                }
                 validateField(input);
                 checkFormValidity(form);
                 if (input.name === "pickup") fetchSuggestions(input.value, f.results.pickup, input);
@@ -450,19 +489,52 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             console.log("Submit triggered for:", f.id);
             activeForm = form;
-            if (!checkFormValidity(form)) return;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const errorLegend = form.querySelector('.form-error-legend');
+            const btnText = submitBtn?.querySelector('.btn-text');
+
+            // Trigger validation for all fields to show individual errors
+            let isFormValid = true;
+            form.querySelectorAll("input, select").forEach(input => {
+                if (!validateField(input)) isFormValid = false;
+            });
+
+            if (!isFormValid) {
+                if (errorLegend) errorLegend.style.display = 'block';
+                return;
+            }
+
+            // Form is valid - show loading state
+            if (errorLegend) errorLegend.style.display = 'none';
+            if (submitBtn) {
+                submitBtn.classList.add('loading');
+                const loader = document.createElement('span');
+                loader.className = 'btn-loader';
+                submitBtn.appendChild(loader);
+                if (btnText) btnText.textContent = "Processing...";
+            }
 
             let dist = 0;
             if (currentCoords.pickup && currentCoords.dropoff) {
                 dist = getDistance(currentCoords.pickup.lat, currentCoords.pickup.lon, currentCoords.dropoff.lat, currentCoords.dropoff.lon);
             } else { 
-                // Approximate distance based on some known points or default
                 dist = Math.floor(Math.random() * 150) + 50; 
             }
 
             const trip = form.querySelector('[name="tripType"]')?.value || "One Way";
             submitEnquiry(form);
-            openTaxiSelection(dist, trip);
+            
+            // Artificial delay to show loader and then open modal
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.classList.remove('loading');
+                    const loader = submitBtn.querySelector('.btn-loader');
+                    if (loader) loader.remove();
+                    if (btnText) btnText.textContent = "Check Prices & Book";
+                }
+                openTaxiSelection(dist, trip);
+            }, 800);
         });
     });
 
