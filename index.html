@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,6 +38,212 @@
 
     <!-- template styles -->
     <link rel="stylesheet" href="assets/css/cityride.css">
+    <style>
+        html {
+            scroll-padding-top: 300px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .taxi-booking__form__grid {
+            display: grid;
+            gap: 15px;
+            align-items: start !important;
+        }
+
+        .taxi-booking__form__control {
+            display: flex;
+            flex-direction: column;
+            overflow: visible !important;
+        }
+
+        .taxi-booking__form__field {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .validation-msg {
+            font-size: 11px;
+            color: #ff0000;
+            display: block;
+            margin-top: 2px;
+            min-height: 14px;
+        }
+
+        .invalid {
+            border-color: #ff0000 !important;
+        }
+
+        /* Premium Autocomplete UI */
+        .dreams-autocomplete-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff !important;
+            border: 1px solid #ddd !important;
+            z-index: 2147483647 !important;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-height: 400px;
+            flex-direction: column;
+            border-radius: 0 0 4px 4px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dreams-autocomplete-results.active {
+            display: flex !important;
+        }
+
+        .autocomplete-list-wrapper {
+            overflow-y: auto;
+            flex: 1;
+            max-height: 350px;
+        }
+
+        .autocomplete-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #f2f2f2;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            transition: background 0.2s;
+            background: #fff !important;
+        }
+
+        .autocomplete-item:hover {
+            background: #f8f8f8 !important;
+        }
+
+        .autocomplete-item .item-icon {
+            color: #9aa0a6;
+            margin-top: 2px;
+            font-size: 14px;
+        }
+
+        .autocomplete-item .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .autocomplete-item .main-text {
+            font-weight: 600;
+            color: #202124;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .autocomplete-item .secondary-text {
+            font-size: 12px;
+            color: #70757a;
+            line-height: 1.2;
+        }
+
+        .autocomplete-footer {
+            padding: 8px 16px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            text-align: right;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .google-brand {
+            color: #4285F4;
+            font-weight: 700;
+        }
+
+        .google-brand span:nth-child(2) {
+            color: #EA4335;
+        }
+
+        .google-brand span:nth-child(3) {
+            color: #FBBC05;
+        }
+
+        .google-brand span:nth-child(4) {
+            color: #4285F4;
+        }
+
+        .google-brand span:nth-child(5) {
+            color: #34A853;
+        }
+
+        .google-brand span:nth-child(6) {
+            color: #EA4335;
+        }
+
+        .taxi-selection-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .taxi-selection-modal--active {
+            display: flex;
+        }
+
+        .taxi-selection-modal__content {
+            background: #fff;
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+            max-height: 100vh;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .taxi-booking__form__btn {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+
+        .taxi-booking__form__car {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 5;
+            pointer-events: none;
+            max-width: 250px;
+        }
+
+        .clean-hero,
+        .clean-hero__item {
+            min-height: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .taxi-booking__form__grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .taxi-selection-modal__content {
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+            }
+
+            .taxi-booking__form__car {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="custom-cursor">
@@ -92,16 +298,23 @@
 
             <!-- Vertical contact strip on the left center -->
             <div class="hero-contact-strip">
-                <a href="mailto:dreamsholidaytrips@gmail.com" style="display:flex; flex-direction:column; align-items:center; gap:8px; color:#fff; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.4px;">
-                    <span style="writing-mode:vertical-rl; transform:rotate(180deg); text-transform:lowercase;">dreamsholidaytrips@gmail.com</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" style="transform: rotate(-90deg);">
-                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                <a href="mailto:dreamsholidaytrips@gmail.com"
+                    style="display:flex; flex-direction:column; align-items:center; gap:8px; color:#fff; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.4px;">
+                    <span
+                        style="writing-mode:vertical-rl; transform:rotate(180deg); text-transform:lowercase;">dreamsholidaytrips@gmail.com</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623"
+                        style="transform: rotate(-90deg);">
+                        <path
+                            d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
                 </a>
-                <a href="tel:+917200221121" style="display:flex; flex-direction:column; align-items:center; gap:8px; color:#fff; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:.4px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.2);">
+                <a href="tel:+917200221121"
+                    style="display:flex; flex-direction:column; align-items:center; gap:8px; color:#fff; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:.4px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.2);">
                     <span style="writing-mode:vertical-rl; transform:rotate(180deg);">+91 72002 21121</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" style="transform: rotate(-90deg);">
-                        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f5a623"
+                        style="transform: rotate(-90deg);">
+                        <path
+                            d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
                     </svg>
                 </a>
             </div>
@@ -126,17 +339,28 @@
                                 AUROVILLE</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-    <div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url('assets/images/carousel/rock beach.png');">
                         <div class="simple-hero__location">
@@ -145,17 +369,28 @@
                                 ROCK BEACH</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-    <div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url('assets/images/carousel/chunnambhar-boathouse.jpg');">
                         <div class="simple-hero__location">
@@ -164,17 +399,28 @@
                                 CHUNNAMBHAR BOATHOUSE</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-    <div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url('assets/images/carousel/the-french-quarters.jpg');">
                         <div class="simple-hero__location">
@@ -183,17 +429,28 @@
                                 THE FRENCH QUARTERS</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-    <div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url('assets/images/carousel/the-Puducherry-museum.jpg');">
                         <div class="simple-hero__location">
@@ -202,17 +459,28 @@
                                 THE Puducherry MUSEUM</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                    <div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url('assets/images/carousel/paradise beach.png');">
                         <div class="simple-hero__location">
@@ -221,17 +489,28 @@
                                 PARADISE BEACH</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                 <div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url('assets/images/carousel/Sri Aurobindo Ashram.jpg');">
                         <div class="simple-hero__location">
@@ -240,12 +519,23 @@
                                 SRI AUROBINDO ASHRAM</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
@@ -259,18 +549,29 @@
                                 Sri Manakula Vinayagar Temple</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams <br> One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams <br> One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                
+
 
                 <div class="item">
                     <div class="clean-hero__item"
@@ -281,17 +582,28 @@
                                 MEERAN MOSQUE</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams<br>One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams<br>One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-<div class="item">
+                <div class="item">
                     <div class="clean-hero__item"
                         style="background-image: url(assets/images/carousel/basilica-of-the-sacred-heart-of-jesus-puducherry.png);">
                         <div class="simple-hero__location">
@@ -300,24 +612,35 @@
                                 BASILICA OF THE SACRED HEART OF JESUS</div>
                         </div>
                         <div class="clean-hero__content text-white">
-                            <p style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">Puducherry & Beyond</p>
-                            <h2 style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">Welcome to Dreams<br>One Way Taxi</h2>
-                            <p style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and Beyond.</p>
+                            <p
+                                style="font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#f5a623; margin-bottom:14px;">
+                                Puducherry & Beyond</p>
+                            <h2
+                                style="font-size:clamp(2rem,5vw,3.8rem); font-weight:900; color:#fff; line-height:1.1; margin:0 0 18px 0; text-shadow:0 4px 24px rgba(0,0,0,0.6); letter-spacing:-0.5px;">
+                                Welcome to Dreams<br>One Way Taxi</h2>
+                            <p
+                                style="font-size:clamp(0.95rem,2vw,1.15rem); color:rgba(255,255,255,0.88); max-width:560px; line-height:1.7; margin:0 0 32px 0; text-shadow:0 2px 10px rgba(0,0,0,0.5);">
+                                Your Trusted Partner for Reliable and Comfortable Taxi Services in Puducherry and
+                                Beyond.</p>
                             <div class="clean-hero__btn-box">
-                                <a href="#services" style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our Services</a>
-                                <a href="tel:+917200221121" style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book a Trip</a>
+                                <a href="#services"
+                                    style="display:inline-block; padding:13px 32px; background:#F93800; color:#fff; font-weight:800; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border-radius:4px; box-shadow:0 4px 20px rgba(245,166,35,0.45);">Our
+                                    Services</a>
+                                <a href="#book"
+                                    style="display:inline-block; padding:13px 32px; background:transparent; color:#fff; font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.7); border-radius:4px;">Book
+                                    a Trip</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            
 
-                
+
+
             </div>
         </section>
         <!-- /.main-slider-two -->
 
-        <section class="services-two section-space-bottom">
+        <section id="book" class="services-two section-space-bottom">
             <div class="services-two__bg" style="background-image: url(assets/images/shapes/shape-1-1.png);"></div>
             <!-- /.services-two__bg -->
             <div class="container">
@@ -331,89 +654,26 @@
                                 <label for="full_name">Full Name</label>
                                 <div class="taxi-booking__form__field">
                                     <input type="text" name="fullName" id="full_name" placeholder="Your Name" required>
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-user"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
+                                    <span class="taxi-booking__form__icon"><i class="icon-user"></i></span>
                                     <span class="validation-msg"></span>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
+                                </div>
+                            </div>
                             <div class="taxi-booking__form__control">
                                 <label for="email">Email Address</label>
                                 <div class="taxi-booking__form__field">
                                     <input type="email" name="email" id="email" placeholder="Your Email" required>
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-email"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
+                                    <span class="taxi-booking__form__icon"><i class="icon-email"></i></span>
                                     <span class="validation-msg"></span>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
+                                </div>
+                            </div>
                             <div class="taxi-booking__form__control">
                                 <label for="mobile">Mobile Number</label>
                                 <div class="taxi-booking__form__field">
                                     <input type="text" name="mobile" id="mobile" placeholder="Your Mobile" required>
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-telephone-call"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
+                                    <span class="taxi-booking__form__icon"><i class="icon-telephone-call"></i></span>
                                     <span class="validation-msg"></span>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
-                            <div class="taxi-booking__form__control">
-                                <label for="pick_up_location">pick up location</label>
-                                <div class="taxi-booking__form__field">
-                                    <input type="text" name="pickup" id="pick_up_location" placeholder="Type Location"
-                                        required autocomplete="off">
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-location"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
-                                    <div class="autocomplete-results" id="pickup-results"></div>
-                                    <span class="validation-msg"></span>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
-                            <div class="taxi-booking__form__control">
-                                <label for="drop_off_location">drop off location</label>
-                                <div class="taxi-booking__form__field">
-                                    <input type="text" name="dropoff" id="drop_off_location" placeholder="Type Location"
-                                        required autocomplete="off">
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-location"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
-                                    <div class="autocomplete-results" id="dropoff-results"></div>
-                                    <span class="validation-msg"></span>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
-                            <div class="taxi-booking__form__control">
-                                <label for="passengers">passengers</label>
-                                <div class="taxi-booking__form__field">
-                                    <input type="text" name="passengers" id="passengers" placeholder="Passengers"
-                                        required>
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-user"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
-                                    <span class="validation-msg"></span>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
-                            <div class="taxi-booking__form__control">
-                                <label>Choose Taxi</label>
-                                <div class="taxi-booking__form__field">
-                                    <select class="selectpicker" name="taxiType" aria-label="Default select example">
-                                        <option value="Sedan (4 Seater)" selected="">Sedan (4 Seater)</option>
-                                        <option value="SUV (6-7 Seater)">SUV (6-7 Seater)</option>
-                                        <option value="Crysta (7 Seater)">Crysta (7 Seater)</option>
-                                        <option value="Tempo (14 Seater)">Tempo (14 Seater)</option>
-                                        <option value="Tempo (17 Seater)">Tempo (17 Seater)</option>
-                                    </select>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
-                            <div class="taxi-booking__form__control">
-                                <label for="datepicker">pick up date</label>
-                                <div class="taxi-booking__form__field">
-                                    <input type="text" name="date" placeholder="Select Date" id="datepicker"
-                                        class="cityride-datepicker">
-                                    <span class="taxi-booking__form__icon">
-                                        <i class="icon-calendar"></i>
-                                    </span><!-- /.taxi-booking__form__icon -->
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
+                                </div>
+                            </div>
                             <div class="taxi-booking__form__control">
                                 <label>Trip Type </label>
                                 <div class="taxi-booking__form__field taxi-booking__form__field--driver">
@@ -422,15 +682,61 @@
                                         <option value="One Way">One Way</option>
                                         <option value="Two Way">Two Way</option>
                                     </select>
-                                </div><!-- /.taxi-booking__form__field -->
-                            </div><!-- /.taxi-booking__form__control -->
+                                </div>
+                            </div>
+                            <div class="taxi-booking__form__control">
+                                <label for="pick_up_location">pick up location</label>
+                                <div class="taxi-booking__form__field">
+                                    <input type="text" name="pickup" id="pick_up_location" placeholder="Type Location"
+                                        required autocomplete="off">
+                                    <span class="taxi-booking__form__icon"><i class="icon-location"></i></span>
+                                    <div class="dreams-autocomplete-results" id="pickup-results"></div>
+                                    <span class="validation-msg"></span>
+                                </div>
+                            </div>
+                            <div class="taxi-booking__form__control">
+                                <label for="drop_off_location">drop off location</label>
+                                <div class="taxi-booking__form__field">
+                                    <input type="text" name="dropoff" id="drop_off_location" placeholder="Type Location"
+                                        required autocomplete="off">
+                                    <span class="taxi-booking__form__icon"><i class="icon-location"></i></span>
+                                    <div class="dreams-autocomplete-results" id="dropoff-results"></div>
+                                    <span class="validation-msg"></span>
+                                </div>
+                            </div>
+                            <div class="taxi-booking__form__control">
+                                <label for="passengers">passengers</label>
+                                <div class="taxi-booking__form__field">
+                                    <input type="text" name="passengers" id="passengers" placeholder="Passengers"
+                                        required>
+                                    <span class="taxi-booking__form__icon"><i class="icon-user"></i></span>
+                                    <span class="validation-msg"></span>
+                                </div>
+                            </div>
+                            <div class="taxi-booking__form__control">
+                                <label for="datepicker-hero">pick up date</label>
+                                <div class="taxi-booking__form__field">
+                                    <input type="text" name="date" placeholder="Select Date" id="datepicker-hero"
+                                        class="cityride-datepicker" required>
+                                    <span class="taxi-booking__form__icon"><i class="icon-calendar"></i></span>
+                                </div>
+                            </div>
+
                             <div class="taxi-booking__form__control taxi-booking__form__control--btn">
-                                <button type="submit" class="taxi-booking__form__btn cityride-btn" disabled>
+                                <button type="submit" class="taxi-booking__form__btn cityride-btn" disabled
+                                    style="width: auto; min-width: 220px; border-radius: 0;">
                                     <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
-                                    <span>book taxi now</span>
-                                </button><!-- /.cityride-btn -->
-                            </div><!-- /.taxi-booking__form__control -->
-                        </div><!-- /.taxi-booking__form__grid -->
+                                    <span>Check Prices & Book</span>
+                                </button>
+                            </div>
+
+                            <!-- Hidden fields -->
+                            <div style="display:none;">
+                                <input type="hidden" name="taxiType">
+                                <input type="hidden" name="distance">
+                                <input type="hidden" name="estimatedAmount">
+                            </div>
+                        </div>
                         <img src="assets/images/hero-form-car.png" width="200" alt="car"
                             class="taxi-booking__form__car">
                         <div class="taxi-booking__form__shape">
@@ -486,22 +792,11 @@
                                     routes </li>
                                 <li><i class="fas fa-check-circle"></i> Transparent pricing with no hidden charges</li>
                             </ul><!-- /.about-four__list -->
-                            <div class="about-four__bottom wow fadeInUp" data-wow-duration="1500ms"
-                                data-wow-delay="150ms">
-                                <div class="about-four__author">
-                                    <div class="about-four__author__man">
-                                        <img src="assets/images/carousel/rock beach.png" alt="image">
-                                    </div><!-- /.about-four__author__man -->
-                                    <div class="about-four__author__content">
-                                        <span class="about-four__author__dec">Dreams One Way Taxi</span>
-                                        <h5 class="about-four__author__title">Professional Service</h5>
-                                        <!-- /.about-four__author__title -->
-                                    </div><!-- /.about-four__author__content -->
-                                </div><!-- /.about-four__author -->
-                                <div class="about-four__signeture">
-                                    <img src="assets/images/shapes/about-founder-sign-4-1.png" alt="image">
-                                </div><!-- /.about-four__signeture -->
-                            </div><!-- /.about-four__author -->
+                            <a href="#book" class="taxi-booking__form__btn cityride-btn" disabled
+                                style="width: auto; min-width: 220px; border-radius: 0;">
+                                <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
+                                <span>Book Your Trip</span>
+                            </a>
                         </div><!-- /.about-four__right -->
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
@@ -609,15 +904,17 @@
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>400 ₹</span>
+                                            <span>600 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
                                             <span>04 Seat</span>
                                         </li>
                                     </ul><!-- /.taxi-card__list -->
-                                    <p style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">*Toll, parking, and permit will be extra charges in the bill.</p>
-                                    <a href="#home" class="cityride-btn cityride-btn--border">
+                                    <p
+                                        style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">
+                                        *Toll, parking, and permit will be extra charges in the bill.</p>
+                                    <a href="#book" class="cityride-btn cityride-btn--border">
                                         <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
                                         <span>book now</span>
                                     </a><!-- /.cityride-btn -->
@@ -650,15 +947,17 @@
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>400 ₹</span>
+                                            <span>600 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
                                             <span>06-07 Seat</span>
                                         </li>
                                     </ul><!-- /.taxi-card__list -->
-                                    <p style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">*Toll, parking, and permit will be extra charges in the bill.</p>
-                                    <a href="#home" class="cityride-btn cityride-btn--border">
+                                    <p
+                                        style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">
+                                        *Toll, parking, and permit will be extra charges in the bill.</p>
+                                    <a href="#book" class="cityride-btn cityride-btn--border">
                                         <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
                                         <span>book now</span>
                                     </a><!-- /.cityride-btn -->
@@ -692,15 +991,17 @@
                                         </li>
                                         <li>
                                             <span>Driver Beta</span>
-                                            <span>600 - 700 ₹</span>
+                                            <span>600 ₹</span>
                                         </li>
                                         <li>
                                             <span>Passengers seat</span>
                                             <span>07-08 Seat</span>
                                         </li>
                                     </ul><!-- /.taxi-card__list -->
-                                    <p style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">*Toll, parking, and permit will be extra charges in the bill.</p>
-                                    <a href="#home" class="cityride-btn cityride-btn--border">
+                                    <p
+                                        style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">
+                                        *Toll, parking, and permit will be extra charges in the bill.</p>
+                                    <a href="#book" class="cityride-btn cityride-btn--border">
                                         <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
                                         <span>book now</span>
                                     </a><!-- /.cityride-btn -->
@@ -741,8 +1042,10 @@
                                             <span>Full AC</span>
                                         </li>
                                     </ul><!-- /.taxi-card__list -->
-                                    <p style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">*Toll, parking, and permit will be extra charges in the bill.</p>
-                                    <a href="#home" class="cityride-btn cityride-btn--border">
+                                    <p
+                                        style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">
+                                        *Toll, parking, and permit will be extra charges in the bill.</p>
+                                    <a href="#book" class="cityride-btn cityride-btn--border">
                                         <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
                                         <span>book now</span>
                                     </a><!-- /.cityride-btn -->
@@ -783,8 +1086,10 @@
                                             <span>Full AC</span>
                                         </li>
                                     </ul><!-- /.taxi-card__list -->
-                                    <p style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">*Toll, parking, and permit will be extra charges in the bill.</p>
-                                    <a href="#home" class="cityride-btn cityride-btn--border">
+                                    <p
+                                        style="font-size: 11px; color: #990f02; margin-bottom: 20px; font-weight: 600; line-height: 1.4;">
+                                        *Toll, parking, and permit will be extra charges in the bill.</p>
+                                    <a href="#book" class="cityride-btn cityride-btn--border">
                                         <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
                                         <span>book now</span>
                                     </a><!-- /.cityride-btn -->
@@ -850,8 +1155,7 @@
                                     <div class="row g-0 align-items-stretch">
                                         <div class="col-md-6">
                                             <div class="why-choose-four__image">
-                                                <img src="assets/images/carousel/aurovile.png"
-                                                    alt="cityride image">
+                                                <img src="assets/images/carousel/aurovile.png" alt="Dreams One Way Taxiimage">
                                             </div><!-- /.why-choose-four__image -->
                                         </div><!-- /.col-md-6 -->
                                         <div class="col-md-6">
@@ -868,16 +1172,12 @@
                                                     <li><i class="icon-check-mark"></i> 100% On-Time Performance</li>
                                                     <li><i class="icon-check-mark"></i> Trusted Local Service</li>
                                                 </ul><!-- /.why-choose-four__content__list -->
-                                                <div class="why-choose-four__btn-box">
-                                                    <a href="about.html"
-                                                        class="why-choose-four__btn cityride-btn cityride-btn--secondary">
-                                                        <span class="cityride-btn__icon"><i
-                                                                class="icon-front-car"></i></span>
-                                                        <span>book a taxi</span>
-                                                    </a><!-- /.why-choose-four__btn -->
-                                                    <div class="why-choose-four__btn__border"></div>
-                                                    <!-- /.why-choose-four__btn__border -->
-                                                </div><!-- /.why-choose-four__btn__box -->
+                                                <a href="#book" class="taxi-booking__form__btn cityride-btn" disabled
+                                                    style="width: auto; min-width: 220px; border-radius: 0;">
+                                                    <span class="cityride-btn__icon"><i
+                                                            class="icon-front-car"></i></span>
+                                                    <span>Book Your Trip</span>
+                                                </a>
                                             </div><!-- /.why-choose-four__content -->
                                         </div><!-- /.col-md-6 -->
                                     </div><!-- /.row -->
@@ -886,7 +1186,7 @@
                                     <div class="row g-0 align-items-stretch">
                                         <div class="col-md-6">
                                             <div class="why-choose-four__image">
-                                                <img src="assets/images/carousel/aurovile.png" alt="cityride image">
+                                                <img src="assets/images/carousel/aurovile.png" alt="Dreams One Way Taxiimage">
                                             </div><!-- /.why-choose-four__image -->
                                         </div><!-- /.col-md-6 -->
                                         <div class="col-md-6">
@@ -903,16 +1203,12 @@
                                                     <li><i class="icon-check-mark"></i> 100% On-Time Performance</li>
                                                     <li><i class="icon-check-mark"></i> Trusted Local Service</li>
                                                 </ul><!-- /.why-choose-four__content__list -->
-                                                <div class="why-choose-four__btn-box">
-                                                    <a href="about.html"
-                                                        class="why-choose-four__btn cityride-btn cityride-btn--secondary">
-                                                        <span class="cityride-btn__icon"><i
-                                                                class="icon-front-car"></i></span>
-                                                        <span>book a taxi</span>
-                                                    </a><!-- /.why-choose-four__btn -->
-                                                    <div class="why-choose-four__btn__border"></div>
-                                                    <!-- /.why-choose-four__btn__border -->
-                                                </div><!-- /.why-choose-four__btn__box -->
+                                                <a href="#book" class="taxi-booking__form__btn cityride-btn" disabled
+                                                    style="width: auto; min-width: 220px; border-radius: 0;">
+                                                    <span class="cityride-btn__icon"><i
+                                                            class="icon-front-car"></i></span>
+                                                    <span>Book Your Trip</span>
+                                                </a>
                                             </div><!-- /.why-choose-four__content -->
                                         </div><!-- /.col-md-6 -->
                                     </div><!-- /.row -->
@@ -921,8 +1217,7 @@
                                     <div class="row g-0 align-items-stretch">
                                         <div class="col-md-6">
                                             <div class="why-choose-four__image">
-                                                 <img src="assets/images/carousel/aurovile.png"
-                                                    alt="cityride image">
+                                                <img src="assets/images/carousel/aurovile.png" alt="Dreams One Way Taxiimage">
                                             </div><!-- /.why-choose-four__image -->
                                         </div><!-- /.col-md-6 -->
                                         <div class="col-md-6">
@@ -939,16 +1234,12 @@
                                                     <li><i class="icon-check-mark"></i> 100% On-Time Performance</li>
                                                     <li><i class="icon-check-mark"></i> Trusted Local Service</li>
                                                 </ul><!-- /.why-choose-four__content__list -->
-                                                <div class="why-choose-four__btn-box">
-                                                    <a href="about.html"
-                                                        class="why-choose-four__btn cityride-btn cityride-btn--secondary">
-                                                        <span class="cityride-btn__icon"><i
-                                                                class="icon-front-car"></i></span>
-                                                        <span>book a taxi</span>
-                                                    </a><!-- /.why-choose-four__btn -->
-                                                    <div class="why-choose-four__btn__border"></div>
-                                                    <!-- /.why-choose-four__btn__border -->
-                                                </div><!-- /.why-choose-four__btn__box -->
+                                                <a href="#book" class="taxi-booking__form__btn cityride-btn" disabled
+                                                    style="width: auto; min-width: 220px; border-radius: 0;">
+                                                    <span class="cityride-btn__icon"><i
+                                                            class="icon-front-car"></i></span>
+                                                    <span>Book Your Trip</span>
+                                                </a>
                                             </div><!-- /.why-choose-four__content -->
                                         </div><!-- /.col-md-6 -->
                                     </div><!-- /.row -->
@@ -957,8 +1248,7 @@
                                     <div class="row g-0 align-items-stretch">
                                         <div class="col-md-6">
                                             <div class="why-choose-four__image">
-                                                 <img src="assets/images/carousel/aurovile.png"
-                                                    alt="cityride image">
+                                                <img src="assets/images/carousel/aurovile.png" alt="Dreams One Way Taxiimage">
                                             </div><!-- /.why-choose-four__image -->
                                         </div><!-- /.col-md-6 -->
                                         <div class="col-md-6">
@@ -975,16 +1265,12 @@
                                                     <li><i class="icon-check-mark"></i> 100% On-Time Performance</li>
                                                     <li><i class="icon-check-mark"></i> Trusted Local Service</li>
                                                 </ul><!-- /.why-choose-four__content__list -->
-                                                <div class="why-choose-four__btn-box">
-                                                    <a href="about.html"
-                                                        class="why-choose-four__btn cityride-btn cityride-btn--secondary">
-                                                        <span class="cityride-btn__icon"><i
-                                                                class="icon-front-car"></i></span>
-                                                        <span>book a taxi</span>
-                                                    </a><!-- /.why-choose-four__btn -->
-                                                    <div class="why-choose-four__btn__border"></div>
-                                                    <!-- /.why-choose-four__btn__border -->
-                                                </div><!-- /.why-choose-four__btn__box -->
+                                                <a href="#book" class="taxi-booking__form__btn cityride-btn" disabled
+                                                    style="width: auto; min-width: 220px; border-radius: 0;">
+                                                    <span class="cityride-btn__icon"><i
+                                                            class="icon-front-car"></i></span>
+                                                    <span>Book Your Trip</span>
+                                                </a>
                                             </div><!-- /.why-choose-four__content -->
                                         </div><!-- /.col-md-6 -->
                                     </div><!-- /.row -->
@@ -1004,7 +1290,8 @@
                         <h6 class="sec-title__tagline">Explore Puducherry</h6><!-- /.sec-title__tagline -->
                         <div class="sec-title__shape"></div><!-- /.sec-title__shape -->
                     </div><!-- /.sec-title__top -->
-                    <h3 class="sec-title__title wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">Must Visit Places in Puducherry</h3><!-- /.sec-title__title -->
+                    <h3 class="sec-title__title wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">Must
+                        Visit Places in Puducherry</h3><!-- /.sec-title__title -->
                 </div><!-- /.sec-title -->
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="100ms">
@@ -1090,7 +1377,8 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="300ms">
                         <div class="visit-places__item">
                             <div class="visit-places__image">
-                                <img src="assets/images/carousel/basilica-of-the-sacred-heart-of-jesus-puducherry.png" alt="Basilica of the Sacred Heart">
+                                <img src="assets/images/carousel/basilica-of-the-sacred-heart-of-jesus-puducherry.png"
+                                    alt="Basilica of the Sacred Heart">
                             </div>
                             <div class="visit-places__content">
                                 <h4 class="visit-places__title">Puducherry to Basilica of the Sacred Heart</h4>
@@ -1188,6 +1476,14 @@
                         </div><!-- /.col-lg-4 col-sm-6 -->
                     </div><!-- /.row gutter-y-40 -->
                 </div><!-- /.work-process-one__inner -->
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#book" class="taxi-booking__form__btn cityride-btn" disabled
+                        style="width: auto; min-width: 220px; border-radius: 0; text-align: center;">
+                        <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
+                        <span>Book Your Trip</span>
+                    </a>
+                </div>
+
             </div><!-- /.container -->
         </section>
 
@@ -1347,7 +1643,12 @@
                                     <h6 class="sec-title__tagline">our testimonials</h6><!-- /.sec-title__tagline -->
                                 </div><!-- /.sec-title__top -->
                                 <h3 class="sec-title__title wow fadeInUp" data-wow-duration="1500ms"
-                                    data-wow-delay="200ms">peoples talk about <br>cityride service</h3>
+                                    data-wow-delay="200ms">peoples talk about <br>Dreams One Way Taxi service</h3>
+                                     <a href="#book"  class="taxi-booking__form__btn cityride-btn" disabled
+                    style="width: auto; min-width: 220px; border-radius: 0; margin-top: 20px;">
+                    <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
+                    <span>Book Your Trip</span>
+                </a>
                                 <!-- /.sec-title__title -->
                             </div><!-- /.sec-title -->
                             <div class="testimonials-two__custome-navs"></div><!-- /.testimonials-two__custome-navs -->
@@ -1504,8 +1805,7 @@
                                         <div class="testimonial-card-two__inner">
                                             <div class="testimonial-card-two__top">
                                                 <div class="testimonial-card-two__image">
-                                                    <img src="assets/images/carousel/rock beach.png"
-                                                        alt="Judith White">
+                                                    <img src="assets/images/carousel/rock beach.png" alt="Judith White">
                                                 </div><!-- /.testimonial-card-two__image -->
                                                 <svg class="testimonial-card-two__icon" viewBox="0 0 56 41" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -1555,192 +1855,7 @@
             </div><!-- /.container -->
         </section><!-- /.testimonials-two -->
 
-        <section class="why-choose-three section-space">
-            <div class="why-choose-three__bg"
-                style="background-image: url(assets/images/shapes/why-choose-bg-3-1.jpg);"></div>
-            <!-- /.why-choose-three__bg -->
-            <div class="why-choose-three__left-bg" style="background-image: url(assets/images/contact-sec-img.jpg);">
-            </div><!-- /.why-choose-three__left-bg -->
-            <div class="container">
-                <div class="row gutter-y-50">
-                    <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1500ms" data-wow-delay="150ms">
-                        <div class="why-choose-three__form">
-                            <div class="why-choose-three__form__bg"
-                                style="background-image: url(assets/images/shapes/why-choose-form-bg.png);"></div>
-                            <!-- /.why-choose-three__form__bg -->
-                            <form class="taxi-booking__form" id="bottom-taxi-form">
-                                <div class="taxi-booking__form__title">
-                                    <h3 class="taxi-booking__form__heading">book your ride</h3>
-                                    <!-- /.taxi-booking__form__heading -->
-                                </div><!-- /.taxi-booking__form__title -->
-                                <div class="taxi-booking__form__grid">
-                                    <div class="taxi-booking__form__control">
-                                        <label for="full_name_bottom">Full Name</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="text" name="fullName" id="full_name_bottom"
-                                                placeholder="Your Name" required>
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-user"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                            <span class="validation-msg"></span>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label for="email_bottom">Email Address</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="email" name="email" id="email_bottom" placeholder="Your Email"
-                                                required>
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-email"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                            <span class="validation-msg"></span>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label for="mobile_bottom">Mobile Number</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="text" name="mobile" id="mobile_bottom"
-                                                placeholder="Your Mobile" required>
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-telephone-call"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                            <span class="validation-msg"></span>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label for="pick_up_location_bottom">pick up location</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="text" name="pickup" id="pick_up_location_bottom"
-                                                placeholder="Type Location" required autocomplete="off">
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-location"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                            <div class="autocomplete-results" id="pickup-results-bottom"></div>
-                                            <span class="validation-msg"></span>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label for="drop_off_location_bottom">drop off location</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="text" name="dropoff" id="drop_off_location_bottom"
-                                                placeholder="Type Location" required autocomplete="off">
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-location"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                            <div class="autocomplete-results" id="dropoff-results-bottom"></div>
-                                            <span class="validation-msg"></span>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label for="passengers_bottom">passengers</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="text" name="passengers" id="passengers_bottom"
-                                                placeholder="Passengers" required>
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-user"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                            <span class="validation-msg"></span>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label>Choose Taxi</label>
-                                        <div class="taxi-booking__form__field">
-                                            <select class="selectpicker" name="taxiType"
-                                                aria-label="Default select example">
-                                                <option value="Sedan (4 Seater)" selected="">Sedan (4 Seater)</option>
-                                                <option value="SUV (6-7 Seater)">SUV (6-7 Seater)</option>
-                                                <option value="Crysta (7 Seater)">Crysta (7 Seater)</option>
-                                                <option value="Tempo (14 Seater)">Tempo (14 Seater)</option>
-                                                <option value="Tempo (17 Seater)">Tempo (17 Seater)</option>
-                                            </select>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label for="datepicker">pick up date</label>
-                                        <div class="taxi-booking__form__field">
-                                            <input type="text" name="date" placeholder="Select Date" id="datepicker"
-                                                class="cityride-datepicker">
-                                            <span class="taxi-booking__form__icon">
-                                                <i class="icon-calendar"></i>
-                                            </span><!-- /.taxi-booking__form__icon -->
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control">
-                                        <label>Trip Type </label>
-                                        <div class="taxi-booking__form__field taxi-booking__form__field--driver">
-                                            <select class="selectpicker" aria-label="Default select example">
-                                                <option selected="">select trip type</option>
-                                                <option value="1">One Way</option>
-                                                <option value="2">Two Way</option>
-                                            </select>
-                                        </div><!-- /.taxi-booking__form__field -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                    <div class="taxi-booking__form__control taxi-booking__form__control--btn">
-                                        <button type="submit" class="taxi-booking__form__btn cityride-btn" disabled>
-                                            <span class="cityride-btn__icon"><i class="icon-front-car"></i></span>
-                                            <span>book taxi now</span>
-                                        </button><!-- /.cityride-btn -->
-                                    </div><!-- /.taxi-booking__form__control -->
-                                </div><!-- /.taxi-booking__form__grid -->
-                            </form><!-- /.taxi-booking__form -->
-                            <div class="why-choose-three__form__shape">
-                                <div class="why-choose-three__form__shape__one"></div>
-                                <!-- /.why-choose-three__form__shape__one -->
-                                <div class="why-choose-three__form__shape__two"></div>
-                                <!-- /.why-choose-three__form__shape__two -->
-                            </div><!-- /.why-choose-three__form__shape -->
-                        </div><!-- /.why-choose-three__form -->
-                    </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-6 wow fadeInRight" data-wow-duration="1500ms" data-wow-delay="150ms">
-                        <div class="why-choose-three__content">
-                            <div class="sec-title ">
-                                <div class="sec-title__top wow fadeInUp" data-wow-duration="1500ms"
-                                    data-wow-delay="150ms">
-                                    <div class="sec-title__shape"></div><!-- /.sec-title__shape -->
-                                    <h6 class="sec-title__tagline">why choose us</h6><!-- /.sec-title__tagline -->
-                                </div><!-- /.sec-title__top -->
-                                <h3 class="sec-title__title wow fadeInUp" data-wow-duration="1500ms"
-                                    data-wow-delay="200ms">We're The Best Taxi Service In Your Town</h3>
-                                <!-- /.sec-title__title -->
-                            </div><!-- /.sec-title -->
-                        </div><!-- /.why-choose-three__content -->
-                        <p class="why-choose-three__text">It is a long established fact that a reader will be distracted
-                            the letters readable content of a page when looking at layout the point of using lorem the
-                            is Ipsum less normal distribution of.</p><!-- /.why-choose-three__text -->
-                        <div class="why-choose-three__feature">
-                            <div class="why-choose-three__feature__item">
-                                <div class="why-choose-three__feature__icon">
-                                    <i class="icon-car-3"></i>
-                                </div><!-- /.why-choose-three__feature__icon -->
-                                <div class="why-choose-three__feature__content">
-                                    <h6 class="why-choose-three__feature__title">airport pickup & drop</h6>
-                                    <!-- /.why-choose-three__feature__title -->
-                                    <p class="why-choose-three__feature__text">Aenean placerat ut lacus nec pulvinar.
-                                        Donce eu leo ante at commodo diam reader luctus</p>
-                                    <!-- /.why-choose-three__feature__text -->
-                                </div><!-- /.why-choose-three__feature__content -->
-                            </div><!-- /.why-choose-three__feature__item -->
-                            <div class="why-choose-three__feature__item">
-                                <div class="why-choose-three__feature__icon">
-                                    <i class="icon-car-1"></i>
-                                </div><!-- /.why-choose-three__feature__icon -->
-                                <div class="why-choose-three__feature__content">
-                                    <h6 class="why-choose-three__feature__title">airport pickup & drop</h6>
-                                    <!-- /.why-choose-three__feature__title -->
-                                    <p class="why-choose-three__feature__text">Aenean placerat ut lacus nec pulvinar.
-                                        Donce eu leo ante at commodo diam reader luctus</p>
-                                    <!-- /.why-choose-three__feature__text -->
-                                </div><!-- /.why-choose-three__feature__content -->
-                            </div><!-- /.why-choose-three__feature__item -->
-                        </div><!-- /.why-choose-three__feature -->
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row gutter-y-40 -->
-            </div><!-- /.container -->
-            <div class="why-choose-three__shape">
-                <div class="why-choose-three__shape__one"></div><!-- /.why-choose-three__shape__one -->
-                <div class="why-choose-three__shape__two"></div><!-- /.why-choose-three__shape__two -->
-            </div><!-- /.why-choose-three__shape -->
-        </section><!-- /.why-choose-three section-space -->
+
         <div class="pattern-bg" style="background-image: url(assets/images/shapes/pattern.png);"></div>
         <!-- /.pattern-bg -->
 
@@ -1839,7 +1954,11 @@
                     <div class="container">
                         <div class="main-footer__bottom__inner">
                             <p class="main-footer__copyright">© All Copyright 2024 by Dreams One Way Taxi</p>
-                            <p class="main-footer__copyright"> Digital Presence By <a style="color: #fff;" href="https://ayntech.co/" target="_blank" rel="noopener noreferrer"><span>Ayn tech</span></a> In collaboration with <a style="color: #fff;" href="https://samhub.in/" rel="noopener noreferrer" target="_blank"><span>SamHub</span></a></p>
+                            <p class="main-footer__copyright"> Digital Presence By <a style="color: #fff;"
+                                    href="https://ayntech.co/" target="_blank" rel="noopener noreferrer"><span>Ayn
+                                        tech</span></a> In collaboration with <a style="color: #fff;"
+                                    href="https://samhub.in/" rel="noopener noreferrer"
+                                    target="_blank"><span>SamHub</span></a></p>
                             <!-- /.list-unstyled -->
                         </div><!-- /.main-footer__inner -->
                     </div><!-- /.container -->
@@ -1854,8 +1973,8 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="icon-x"></i></span>
             <div class="logo-box logo-retina">
-                <a href="#home" aria-label="logo image"><img src="assets/images/logo/dreamsonewaytaxi.jpeg" width="105" style="border-radius: 100%;"
-                        alt="logo"></a>
+                <a href="#home" aria-label="logo image"><img src="assets/images/logo/dreamsonewaytaxi.jpeg" width="105"
+                        style="border-radius: 100%;" alt="logo"></a>
             </div><!-- /.logo-box -->
             <div class="mobile-nav__container"></div><!-- /.mobile-nav__container -->
             <ul class="mobile-nav__contact list-unstyled">
@@ -1971,12 +2090,43 @@
     <!-- Custom Form Modal -->
     <div id="form-modal" class="custom-modal">
         <div class="custom-modal__overlay"></div>
-        <div class="custom-modal__content">
+        <div class="custom-modal__content"
+            style="border-radius: 0; max-height: 90vh; overflow-y: auto; padding-top: 60px;">
+            <button id="modal-back" class="cityride-btn"
+                style="position: absolute; top: 10px; left: 10px; padding: 5px 15px; font-size: 14px; background: #000; color: #fff; display: none;">Back</button>
             <div id="modal-icon" class="custom-modal__icon"></div>
             <h3 id="modal-title" class="custom-modal__title"></h3>
             <div id="modal-details" class="custom-modal__details"></div>
             <p id="modal-message" class="custom-modal__message"></p>
-            <button id="modal-close" class="cityride-btn" style="display: none;"><span>Close</span></button>
+            <div class="modal-footer"
+                style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                <button id="modal-close" class="cityride-btn"
+                    style="display: none; background: #008000; color: #fff;"><span>Confirm & Book Now</span></button>
+                <button id="modal-cancel" class="cityride-btn"
+                    style="display: none; background: #000; color: #fff;"><span>Cancel</span></button>
+            </div>
+        </div>
+    </div>
+    <!-- Taxi Selection Modal -->
+    <div id="taxi-selection-modal" class="taxi-selection-modal">
+        <div class="taxi-selection-modal__content">
+            <div class="taxi-selection-modal__header" style="position: relative; padding-top: 50px;">
+                <button class="cityride-btn btn-modal-back"
+                    style="position: absolute; top: 10px; right: 10px; background: #ff0000; color: #fff; padding: 5px 15px; font-size: 14px;">Back</button>
+                <h3>Choose Your Perfect Ride</h3>
+                <p style="font-size: 13px; color: #666; margin-bottom: 5px;">This is an approx calc, will be revised if
+                    needed</p>
+                <p>Calculated Distance: <span id="modal-calculated-distance">0</span> Km</p>
+                <!-- Close button removed to force selection as per requirements -->
+            </div>
+            <div class="taxi-selection-modal__list" id="taxi-list">
+                <!-- Taxi items will be injected here -->
+            </div>
+            <div class="taxi-selection-modal__footer"
+                style="padding: 20px; text-align: center; border-top: 1px solid #eee;">
+                <button class="cityride-btn btn-modal-cancel"
+                    style="background: #000; color: #fff; margin: 0 auto; display: block;">Cancel Booking</button>
+            </div>
         </div>
     </div>
     <a href="https://wa.me/917200221121" class="whatsapp-float" target="_blank">

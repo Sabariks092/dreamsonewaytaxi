@@ -44,7 +44,10 @@
   // Date Picker
   if ($(".cityride-datepicker").length) {
     $(".cityride-datepicker").each(function () {
-      $(this).datepicker();
+      $(this).datepicker({
+        minDate: 0,
+        dateFormat: 'dd/mm/yy'
+      });
     });
   }
 
@@ -786,14 +789,17 @@
     }
   }
 
+  $(document).ready(function () {
+    thmOwlInit();
+    thmTinyInit();
+  });
+
   // window load event
 
   $(window).on("load", function () {
     if ($(".preloader").length) {
       $(".preloader").fadeOut();
     }
-    thmOwlInit();
-    thmTinyInit();
     priceFilter();
 
     if ($(".circle-progress").length) {
