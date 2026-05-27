@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 name: "Sedan (4 Seater)",
                 image: "assets/images/cars/sedan.png",
-                oneWay: 14,
-                roundTrip: 13,
+                oneWay: 16,
+                roundTrip: 15,
                 driverBeta: 400,
                 seats: "04 Seat",
                 details: "Professional & Budget-Friendly"
@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const baseFare = Math.round(effectiveDistance * rate);
 
             // Requirement 2: Driver Beta logic
-            let driverBeta = 400; // Default for Sedan/SUV
+            let driverBeta = 500; // Default for Sedan/SUV
             if (nameLower.includes("crysta")) {
                 driverBeta = isRoundTrip ? 600 : 700;
             } else if (nameLower.includes("tempo 14 seat") || nameLower.includes("tempo 17 seat")) {
@@ -401,6 +401,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let [key, value] of formData.entries()) {
             if (labels[key]) summaryHTML += `<p><strong>${labels[key]}:</strong> <span>${value}</span></p>`;
         }
+        summaryHTML += `</div></div><div style="font-size: 11px; color: #990f02; text-align: center; margin-top: 10px;">*Waiting Charges ₹200 per hour.</div>`;
         summaryHTML += `</div></div><div style="font-size: 11px; color: #990f02; text-align: center; margin-top: 10px;">*Toll, Parking, Permit extra.</div>`;
 
         showStatusModal('success', 'Verify Details', 'Please confirm your booking information:', summaryHTML);
